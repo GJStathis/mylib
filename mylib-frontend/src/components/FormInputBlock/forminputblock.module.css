@@ -1,0 +1,7 @@
+.formContainer:input {
+    display: block
+}
+
+.formContainer:label {
+    display: block
+}
