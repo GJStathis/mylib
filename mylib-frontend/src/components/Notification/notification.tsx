@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState, useCallback } from "react"
 import { myContext } from "../../pages/Context/context"
 import { FaTimes } from "react-icons/fa"
 import styles from "./notification.module.css"
@@ -8,14 +8,14 @@ export default function Notification() {
     const [renderComp, setRenderComp] = useState<boolean>(false)
     const [currentTimeoutId, setCurrentTimeoutId] = useState<NodeJS.Timeout | null>(null)
 
-    function removeNotification() {
+    const removeNotification = useCallback(function removeNotification() {
         if(currentTimeoutId) {
             clearTimeout(currentTimeoutId)
             setCurrentTimeoutId(null)
         }
         setRenderComp(false)
         setAlertMessage("")
-    }
+    }, [currentTimeoutId, setCurrentTimeoutId, setRenderComp, setAlertMessage])
 
     useEffect(() => {
         if(alertMessage !== "") {
@@ -28,7 +28,7 @@ export default function Notification() {
 
             setCurrentTimeoutId(timeoutId)
         }
-     }, [alertMessage, setRenderComp, setCurrentTimeoutId])
+     }, [alertMessage, setRenderComp, setCurrentTimeoutId, removeNotification])
 
     return (
         <>
