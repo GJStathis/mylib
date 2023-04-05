@@ -1,2 +1,6 @@
 .env
 node_modules
+mylib-backend/public
+mylib-frontend/build
+.DS_Store
+test_data

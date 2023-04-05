@@ -18,3 +18,20 @@
     justify-content: center;
     flex-direction: column;
 }
+
+.loginText {
+    margin: 0;
+    font-size: 1.6em;
+    font-family: 'Type Machine';
+}
+
+.loginDivider {
+    margin: 0;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+@font-face {
+    font-family: 'Type Machine';
+    src: local('Type Machine'), url('../../fonts/Type Machine.ttf') format("truetype");
+}

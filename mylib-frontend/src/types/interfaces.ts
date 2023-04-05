@@ -1,3 +1,5 @@
+import React from "react"
+
 type UserModel = {
     user_id?: number
     social_media_site: string,
@@ -14,10 +16,24 @@ export interface BookModel {
     reading_status: string,
     added_date: Date,
     completed_date?: Date,
-    notes: string[]
+    notes: string[],
+    cover_image_path?: string,
+    author: string
 }
 
 export interface UserContext {
     user: UserModel,
-    setUser: React.Dispatch<any>
+    setUser: React.Dispatch<any>,
+    alertMessage: string,
+    setAlertMessage: React.Dispatch<string>
+}
+
+export interface LibraryDispatchContext {
+    libraryDispatch: React.Dispatch<any>
+}
+
+export interface ResponseMessage {
+    status: string,
+    data?: Record<string, any>
+    message?: string
 }

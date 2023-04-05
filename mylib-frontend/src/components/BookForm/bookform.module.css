@@ -1,0 +1,81 @@
+.completeDateInput {
+    margin-top: 10px;
+    display: flex;
+}
+
+.imagePreview {
+    width: 200px;
+    height: 275px;
+    border: 1px solid black;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.formInput {
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 20px;
+}
+
+.dateInput {
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 20px;
+}
+
+.bookForm {
+    border-top: 2px solid black;
+    padding: 10px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.clearButton {
+    height: 25px;
+    margin-left: 10px;
+    align-self: flex-end;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: all .1s ease-in-out;
+}
+
+.clearButton:hover {
+    background-color: black;
+    color: white;
+    transition: all .1s ease-in-out;
+}
+
+.radioContainer {
+    margin-top: 10px;
+}
+
+.radioButton {
+    color: red;
+    border: 1px solid white
+}
+
+.bookNotesList {
+    padding-top: 20px;
+}
+
+.bookFormSubmit {
+    height: 25px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: all .1s ease-in-out;
+}
+
+.bookFormSubmit:hover {
+    background-color: black;
+    color: white;
+    transition: all .1s ease-in-out;
+}

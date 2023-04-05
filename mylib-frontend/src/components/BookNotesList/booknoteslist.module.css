@@ -1,0 +1,48 @@
+.noteContainer {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.noteListContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.deleteItemButton {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    border: 1px solid #cb4848;
+    background-color: #cb4848;
+    color: white;
+    align-self: center;
+    margin-left: 10px;
+}
+
+.deleteItemButton:hover {
+    background-color: #a73b3b;
+}
+
+.addButton {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1px solid #5b824e;
+    background-color: #5b824e;
+}
+
+.addButton:hover {
+    background-color: #4e7043;
+}
+
+.bookNote {
+    border: 2px solid black;
+    border-radius: 10px;
+    font-family: 'Type Machine';
+}
+
+@font-face {
+    font-family: 'Type Machine';
+    src: local('Type Machine'), url('../../fonts/Type Machine.ttf') format("truetype");
+}

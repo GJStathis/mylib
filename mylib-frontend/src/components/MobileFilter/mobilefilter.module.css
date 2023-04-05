@@ -1,0 +1,86 @@
+.filterButton {
+    height: 45px;
+    width: 45px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.hideFilter {
+    display: none !important;
+}
+
+.showFilter {
+    display: flex;
+    border: 1px solid black;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 8px;
+    width: 100%;
+    background-color: #FAF9F6;
+}
+.searchBar {
+    height: 45px;
+    max-width: 400px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #344d56;
+    font-size: 1.2em;
+    font-family: 'Type Machine';
+}
+
+.searchFilter {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterDropdownContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectFilter {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    margin-left: 10px;
+    justify-self: flex-start;
+}
+
+.filterOptions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.clearFilterButton {
+    height: 45px;
+    width: 100px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Type Machine';
+    font-size: 1em;
+    transition: all .1s ease-in-out;
+}
+
+.clearButtonContainer {
+    display: flex;
+    width: 100%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}

@@ -14,7 +14,9 @@ type BookModel = {
     reading_status: string,
     added_date: Date,
     completed_date?: Date,
-    notes: string[]
+    notes: string[],
+    cover_image_path?: string
+    author: string
 }
 
 export { UserModel, BookModel }

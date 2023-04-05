@@ -5,13 +5,14 @@ export const myContext = createContext<UserContext>(undefined!)
 export default function Context(props: PropsWithChildren<any>) {
 
     const [user, setUser] = useState<any>()
+    const [alertMessage, setAlertMessage] = useState<string>("")
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/user`, {
             credentials: 'include'
         })
         .then((res) => {
-            if(res.status == 401) {
+            if(res.status === 401) {
                 return {}
             }
             return res.json()
@@ -23,7 +24,7 @@ export default function Context(props: PropsWithChildren<any>) {
     }, [])
 
     return (
-        <myContext.Provider value={{user: user, setUser: setUser}}>
+        <myContext.Provider value={{user: user, setUser: setUser, alertMessage: alertMessage, setAlertMessage: setAlertMessage}}>
             {props.children}
         </myContext.Provider>
     )

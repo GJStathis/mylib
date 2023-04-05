@@ -1,76 +1,46 @@
-import { useContext, useState, useEffect } from "react"
-import FormInputBlock from "../../components/FormInputBlock/forminputblock"
-import { BookModel } from "../../types/interfaces"
-import { myContext } from "../Context/context"
+import { useEffect, useReducer, useState } from "react"
+import { BookModel, ResponseMessage } from "../../types/interfaces"
+import { bookReducer } from "../../utils/reducers"
+import { BooksDispatchContext } from "./context"
+import BookCard from "../../components/BookCard/bookcard"
+import UIBar from "../../components/UIBar/uibar"
 import styles from "./library.module.css"
 
 export default function Library() {
-    const [books, setBooks] = useState<BookModel[]>([])
 
-    const [bookTitle, setBookTitle] = useState<string>("")
-    const [readingStatus, setReadingStatus] = useState<string>("Not Read")
-    const [completedDate, setCompletedDate] = useState<string | undefined>(undefined)
-    const [notes, setNotes] = useState<string[] | null>(null)
+    const [books, dispatch] = useReducer(bookReducer, [])
+    const [displayBooks, setDisplayBooks] = useState(books)
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/library/all`)
+        setDisplayBooks(books)
+    }, [books])
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/library/all`, {
+            credentials: "include"
+        })
         .then((res) => res.json())
-        .then((data: BookModel[]) => {
-            setBooks(data)
+        .then((data: ResponseMessage) => {
+            dispatch({
+                type: "initialize",
+                data: data.data!["rows"]
+            })
         })
         .catch((err) => console.error(err))
     },[])
 
     return (
-        <div className={styles.libraryContainer}>
-            <div>
-                {
-                    books.map((val) => {
-                        return <div>val</div>
-                    })
-                }
+        <BooksDispatchContext.Provider value={{libraryDispatch: dispatch}} >
+            <UIBar defaultBooks={books} setBookState={setDisplayBooks} />
+            <div className={styles.libraryContainer}>
+                <div className={styles.booksContainer}>
+                    {
+                        displayBooks.map((val: BookModel, idx: number) => {
+                            return <BookCard key={idx} book={val}/>
+                        })
+                    }
+                </div>
             </div>
-            
-            <div>
-                <form onSubmit={(e) => e.preventDefault()}>
-                    <FormInputBlock>
-                        <label htmlFor="bookTitle">Book Title</label>
-                        <input type="text" id="bookTitle" value={bookTitle} onChange={e => setBookTitle(e.target.value)}/>
-                    </FormInputBlock>
-
-                    <FormInputBlock>
-                        <label htmlFor="readingStatus">Reading Status</label>
-                        <input type="text" id="bookTitle" value={bookTitle} onChange={e => setBookTitle(e.target.value)}/>
-                    </FormInputBlock>
-
-                    <FormInputBlock>
-                        <label htmlFor="bookTitle">Book Title</label>
-                        <input type="text" id="bookTitle" value={bookTitle} onChange={e => setBookTitle(e.target.value)}/>
-                    </FormInputBlock>
-
-                    <div>
-                        <label>
-                            <input type="radio" name="read_status" value="Not Read" onChange={() => setReadingStatus("Not Read")}/> Not Read
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="radio" name="read_status" value="Reading" onChange={() => setReadingStatus("Reading")}/> Reading
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="radio" name="read_status" value="Completed" onChange={() => setReadingStatus("Completed")}/> Completed
-                        </label>
-                    </div>
-
-                    <FormInputBlock>
-                        <label htmlFor="competedDate">Completed Date</label>
-                        <input type="date" id="competedDate" value={completedDate} onChange={e => setCompletedDate(e.target.value)}/>
-                    </FormInputBlock>
-
-                </form>
-            </div>
-        </div>
+        </BooksDispatchContext.Provider>
     )
 }

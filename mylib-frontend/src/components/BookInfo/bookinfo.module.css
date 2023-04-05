@@ -1,0 +1,22 @@
+.bookInfoTitle {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.bookNote {
+    font-family: 'Type Machine';
+}
+
+.notesList {
+    list-style-type: '- ';
+}
+
+.compltedDiv {
+    padding-top: 10px;
+}
+
+@font-face {
+    font-family: 'Type Machine';
+    src: local('Type Machine'), url('../../fonts/Type Machine.ttf') format("truetype");
+}
+

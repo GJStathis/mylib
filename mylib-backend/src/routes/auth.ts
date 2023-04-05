@@ -1,14 +1,7 @@
 import passport from "passport";
-import express, { Router, Request, Response, NextFunction } from "express";
+import express, { Router } from "express";
+import { checkIfAuthenticated, generateSuccessResponse } from "../utils/utils.js";
 const router = express.Router()
-
-function checkIfAuthenticated(req: Request, res: Response, next: NextFunction) {
-    if(!req.user) {
-        res.status(401).json({message: "Client not authenticated"})
-    } else {
-        next();
-    }
-}
 
 function setAuthRoutes(passport: passport.PassportStatic): Router {
 
@@ -35,13 +28,13 @@ function setAuthRoutes(passport: passport.PassportStatic): Router {
     })
 
     router.post("/logout", (req, res, next) => {
-        console.log("User is logging out")
         req.logout((err) => {
             if(err) {
                 return next(err)
             }
 
-            res.status(200).json({message: "User has been logged out"})
+            const resPayload = generateSuccessResponse("You have been logged out")
+            res.status(200).json(resPayload)
         })
     })
 
@@ -49,6 +42,5 @@ function setAuthRoutes(passport: passport.PassportStatic): Router {
 }
 
 export {
-    setAuthRoutes,
-    checkIfAuthenticated
+    setAuthRoutes
 }
