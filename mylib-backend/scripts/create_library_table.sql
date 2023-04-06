@@ -8,5 +8,6 @@ CREATE TABLE IF NOT EXISTS library (
     notes text[],
     cover_image_path text,
     author text NOT NULL
-    CONSTRAINT user_book_constraint UNIQUE(user_id, book_title) 
 );
+
+ALTER TABLE library ADD CONSTRAINT user_book_unique UNIQUE (user_id,book_title);

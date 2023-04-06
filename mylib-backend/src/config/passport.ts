@@ -30,7 +30,7 @@ function passportStrategies(passport: passport.PassportStatic) {
     passport.use(new GoogleStrategy.Strategy({
         clientID:     process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-        callbackURL: `http://${process.env.DATABASE_HOST}:${process.env.APP_PORT}/auth/google/redirect`,
+        callbackURL: `${process.env.APP_HOST}/auth/google/redirect`,
         passReqToCallback   : true
       },
       function(req: Request, accessToken: string, refreshToken: string, profile: any, done: GoogleStrategy.VerifyCallback) {
@@ -52,7 +52,7 @@ function passportStrategies(passport: passport.PassportStatic) {
     passport.use(new FacebookStrategy.Strategy({
         clientID: process.env.FACEBOOK_APP_ID!,
         clientSecret: process.env.FACEBOOK_APP_SECRET!,
-        callbackURL: `http://${process.env.DATABASE_HOST}:${process.env.APP_PORT}/auth/facebook/redirect`,
+        callbackURL: `${process.env.APP_HOST}/auth/facebook/redirect`,
         profileFields: ["email", "displayName"]
         }, 
         function(accessToken: string, refreshToken: string, profile: FacebookStrategy.Profile, done: any) {
