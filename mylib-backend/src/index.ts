@@ -39,8 +39,7 @@ app.use(session({
     cookie: { 
         maxAge: oneDay,
         sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-        secure: process.env.NODE_ENV === "production",
-        domain: process.env.CLIENT_URL
+        secure: process.env.NODE_ENV === "production"
     },
     resave: true
 }))
