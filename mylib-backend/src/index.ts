@@ -34,9 +34,13 @@ app.use(session({
         pool: connection,
         tableName: "user_sessions"
     }),
-    saveUninitialized: true,
-    cookie: { maxAge: oneDay },
-    resave: false
+    saveUninitialized: false,
+    cookie: { 
+        maxAge: oneDay,
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+        secure: process.env.NODE_ENV === "production"
+    },
+    resave: true
 }))
 
 app.use(express.json())
