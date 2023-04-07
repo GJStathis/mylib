@@ -28,6 +28,7 @@ app.use(cors({
 passportStrategies(passport)
 
 const oneDay = 1000 * 60 * 60 * 24;
+app.set("trust proxy", 1);
 app.use(session({
     secret: process.env.SESSION_SECRET!,
     store: new pgSession ({
@@ -38,7 +39,8 @@ app.use(session({
     cookie: { 
         maxAge: oneDay,
         sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-        secure: process.env.NODE_ENV === "production"
+        secure: process.env.NODE_ENV === "production",
+        domain: process.env.CLIENT_URL
     },
     resave: true
 }))
