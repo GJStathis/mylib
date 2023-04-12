@@ -20,7 +20,8 @@
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "typeRoots": [
       "./src/typings/express",
-      "./node_modules/@types"
+      "./node_modules/@types",
+      "./node_modules/@aws-sdk"
     ]
 
   }
