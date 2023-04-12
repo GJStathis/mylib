@@ -5,7 +5,7 @@ export default function Splash() {
     return (
         <div className={styles.splashContainer}>
             <div className={styles.introBlock}>
-                <h2 className={styles.introText}>Mylib.io</h2>
+                <h2 className={styles.introText}>Mylib.ink</h2>
                 <hr className={styles.introDivider}/>
             </div>
             <div className={styles.webContainer}>

@@ -5,7 +5,17 @@ export const myContext = createContext<UserContext>(undefined!)
 export default function Context(props: PropsWithChildren<any>) {
 
     const [user, setUser] = useState<any>()
-    const [alertMessage, setAlertMessage] = useState<string>("")
+    const [notifications, setNotifications] = useState<any>([])
+
+    function createNotification(message: string) {
+        setNotifications([...notifications, { message, id: notifications.length }])
+    }
+
+    function deleteNotification(id: number) {
+        setNotifications(
+            notifications.filter((notification: any) => notification.id !== id)
+        )
+    }
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/user`, {
@@ -24,7 +34,13 @@ export default function Context(props: PropsWithChildren<any>) {
     }, [])
 
     return (
-        <myContext.Provider value={{user: user, setUser: setUser, alertMessage: alertMessage, setAlertMessage: setAlertMessage}}>
+        <myContext.Provider value={
+            {user: user, 
+            setUser: setUser, 
+            notifications: notifications, 
+            createNotification: createNotification,
+            deleteNotification: deleteNotification
+            }}>
             {props.children}
         </myContext.Provider>
     )

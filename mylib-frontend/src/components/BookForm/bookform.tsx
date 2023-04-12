@@ -13,7 +13,9 @@ type BookFormProps = {
 }
 
 export default function BookForm({initBook, is_update}: BookFormProps) {
-    const { setAlertMessage } = useContext(myContext)
+    const MAX_FILE_SIZE = 1024
+
+    const { createNotification } = useContext(myContext)
     const { libraryDispatch } = useContext(BooksDispatchContext)
     const {book_id, book_title, reading_status, added_date, completed_date, notes, cover_image_path, author} = initBook
 
@@ -26,13 +28,19 @@ export default function BookForm({initBook, is_update}: BookFormProps) {
 
     function validateInput() {
         if(bookTitle === "" || !readingStatus || bookAuthor === "") {
-            throw Error("Book title or status cannot be empty")
+            throw Error("Book title, status or author cannot be empty")
         }
 
         const allowed_files = ["image/jpeg", "image/png"]
 
-        if(coverFile && !allowed_files.includes(coverFile.type)) {
-            throw Error(`Only images can be uploaded for book covers not ${coverFile.type}`)
+        if(coverFile) {
+            if(!allowed_files.includes(coverFile.type)) {
+                throw Error(`Only images can be uploaded for book covers not ${coverFile.type}`)
+            }
+
+            if( (coverFile.size/1024) > MAX_FILE_SIZE ) {
+                throw Error(`File size too large. Please keep files below 1MB`)
+            }
         }
     }
 
@@ -67,16 +75,19 @@ export default function BookForm({initBook, is_update}: BookFormProps) {
             }
 
             const endpoint = is_update ? `update/${initBook.book_title}` : "save"
+
             fetch(`${process.env.REACT_APP_BACKEND_URL}/library/${endpoint}`, {
                 method: "POST",
                 credentials: "include",
                 body: formData
             })
-            .then((res) => res.json())
+            .then((res) => {
+                return res.json()
+            })
             .then((data: ResponseMessage) => {
                 if(data.status === "success") {
 
-                    setAlertMessage(data.message!)
+                    createNotification(data.message!)
                     
                     if(data.data!.imageURL) {
                         newBook.cover_image_path = data.data!.imageURL
@@ -90,7 +101,7 @@ export default function BookForm({initBook, is_update}: BookFormProps) {
                         data: newBook
                     })
                 } else {
-                    setAlertMessage(`Processes Failed ${data.message}`)
+                    createNotification(`Processes Failed ${data.message}`)
                 }
             })
             .catch((err) => console.error(err))
@@ -114,13 +125,15 @@ export default function BookForm({initBook, is_update}: BookFormProps) {
                         <input type="text" id="bookAuthor" className={styles.formInput} value={bookAuthor} onChange={e => setBookAuthor(e.target.value)}/>
                     </FormInputBlock>
 
-                    <div className={styles.completeDateInput}>
-                        <FormInputBlock>
-                            <label htmlFor="competedDate">Completed Date</label>
-                            <input className={styles.dateInput} type="date" id="competedDate" value={completedDate} defaultValue={completedDate} onChange={(e) => setCompletedDate(e.target.value)}/>
-                        </FormInputBlock>
-                            <button  type="button" className={styles.clearButton} onClick={() => setCompletedDate("")}>clear</button>
-                    </div>
+                    { readingStatus === "Completed" &&
+                        <div className={styles.completeDateInput}>
+                            <FormInputBlock>
+                                <label htmlFor="competedDate">Completed Date</label>
+                                <input className={styles.dateInput} type="date" id="competedDate" value={completedDate} defaultValue={completedDate} onChange={(e) => setCompletedDate(e.target.value)}/>
+                            </FormInputBlock>
+                                <button  type="button" className={styles.clearButton} onClick={() => setCompletedDate("")}>clear</button>
+                        </div>
+                    }
 
                     <div className={styles.radioContainer}>
                         Reading status

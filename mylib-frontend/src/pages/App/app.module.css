@@ -1,0 +1,11 @@
+.notificationContainer {
+    position: fixed;
+    left: 45%;
+    top: 3%;
+    max-height: 100px;
+    min-width: 150px;
+    z-index: 11;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+}

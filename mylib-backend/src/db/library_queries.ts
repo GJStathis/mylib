@@ -2,6 +2,13 @@ import { QueryResult } from "pg"
 import { connection } from "./connection.js"
 import { BookModel } from "../typings/db/dbtypes.js"
 
+function getUserBookImageURL(book_title: string, user_id: number): Promise<BookModel | void> {
+    return connection.query("SELECT cover_image_path FROM library WHERE user_id=$1 AND book_title=$2", [user_id, book_title])
+    .then((res: QueryResult<BookModel>) => {
+        return res.rows[0]
+    })
+}
+
 function getAllUserBooks(user_id: number): Promise<BookModel[] | void> {
     return connection.query("SELECT * FROM library WHERE user_id=$1", [user_id])
     .then((res: QueryResult<BookModel>) => {
@@ -30,5 +37,6 @@ export {
     getAllUserBooks,
     deleteUsersBook,
     saveBook,
-    updateUserBook
+    updateUserBook,
+    getUserBookImageURL
 }

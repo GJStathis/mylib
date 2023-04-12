@@ -24,8 +24,9 @@ export interface BookModel {
 export interface UserContext {
     user: UserModel,
     setUser: React.Dispatch<any>,
-    alertMessage: string,
-    setAlertMessage: React.Dispatch<string>
+    notifications: any[],
+    createNotification: any,
+    deleteNotification: any
 }
 
 export interface LibraryDispatchContext {

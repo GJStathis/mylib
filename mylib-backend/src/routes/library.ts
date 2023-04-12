@@ -1,8 +1,8 @@
 import express from "express";
-import { checkIfAuthenticated, getPublicImageUrl, generateSuccessResponse, generateErrorResponse } from "../utils/utils.js";
+import { checkIfAuthenticated, deleteImageInS3, generateSuccessResponse, generateErrorResponse } from "../utils/utils.js";
 import { getAllUserBooks, deleteUsersBook, saveBook, updateUserBook } from "../db/library_queries.js"
 import { BookModel } from "../typings/db/dbtypes.js";
-import { upload } from "../config/file_uploads.js"
+import { s3_upload } from "../config/file_uploads.js"
 
 const router = express.Router()
 
@@ -16,6 +16,8 @@ router.get("/all", checkIfAuthenticated, (req, res) => {
 })
 
 router.delete("/delete/:bookTitle", checkIfAuthenticated, (req, res) => {
+    deleteImageInS3(req.params.bookTitle, req.user!.user_id!)
+
     deleteUsersBook(req.user!.user_id!, req.params.bookTitle)
     .then((success: boolean) => {
         const resPayload = generateSuccessResponse()
@@ -24,11 +26,13 @@ router.delete("/delete/:bookTitle", checkIfAuthenticated, (req, res) => {
     .catch((err) => console.error(err))
 })
 
-router.post("/update/:bookTitle", checkIfAuthenticated, upload, (req, res) => {
+router.post("/update/:bookTitle", checkIfAuthenticated, s3_upload, (req, res) => {
     const book: BookModel = JSON.parse(req.body.data)
     
     if(req.file) {
-        book.cover_image_path = getPublicImageUrl(req.file.path)
+        deleteImageInS3(req.params.bookTitle, req.user!.user_id!)
+        const s3_file = req.file as Express.MulterS3.File | undefined
+        book.cover_image_path = s3_file?.location
     }
 
     console.log("Updating book...")
@@ -44,9 +48,11 @@ router.post("/update/:bookTitle", checkIfAuthenticated, upload, (req, res) => {
     })
 })
 
-router.post("/save", checkIfAuthenticated, upload, (req, res) => {
+router.post("/save", checkIfAuthenticated, s3_upload, (req, res) => {
+    
     const book: BookModel = JSON.parse(req.body.data)
-    book.cover_image_path = req.file ? getPublicImageUrl(req.file.path) : undefined
+    const s3_file = req.file as Express.MulterS3.File | undefined
+    book.cover_image_path = s3_file ? s3_file.location : undefined
 
     saveBook(req.user!.user_id!, book)
     .then((rows: any) => {

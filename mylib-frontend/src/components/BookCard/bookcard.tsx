@@ -14,7 +14,7 @@ type BookCardProps = {
 }
 
 export default function BookCard({ book }: BookCardProps) {
-    const { setAlertMessage } = useContext(myContext)
+    const { createNotification } = useContext(myContext)
     const { libraryDispatch } = useContext(BooksDispatchContext)
 
     const [updateModal, setUpdateModal] = useState<boolean>(false)
@@ -38,7 +38,7 @@ export default function BookCard({ book }: BookCardProps) {
         .then((res) => res.json())
         .then((data: ResponseMessage) => {
             if(data.status === "success") {
-                setAlertMessage("Book deleted")
+                createNotification("Book deleted")
                 libraryDispatch({
                     type: "delete",
                     data: book

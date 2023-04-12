@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
-import AppRouter from './components/AppRouter/approuter';
-import Context from './pages/Context/context';
-import Notification from './components/Notification/notification';
+import App from './pages/App/app'
+import Context from './pages/Context/context'
+import './index.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <Context>
-      <Notification />
-      <AppRouter/>
+      <App />
     </Context>
   </React.StrictMode>
 );
