@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useCallback } from "react"
+import { useContext, useEffect } from "react"
 import { myContext } from "../../pages/Context/context"
 import { FaTimes } from "react-icons/fa"
 import styles from "./notification.module.css"
@@ -18,7 +18,7 @@ export default function Notification({notifyObject}: NotificationProps) {
             return () => {
                 clearTimeout(timeoutId);
             };
-        }, [])
+        }, [deleteNotification, notifyObject.id])
 
     return (
         <>
