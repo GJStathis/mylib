@@ -38,3 +38,9 @@ export interface ResponseMessage {
     data?: Record<string, any>
     message?: string
 }
+
+export interface NotificationObject {
+    message: string,
+    type: string,
+    id: number,
+}

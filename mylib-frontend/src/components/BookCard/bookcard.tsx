@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { BookModel, ResponseMessage } from "../../types/interfaces"
 import { FaEdit, FaTimes } from "react-icons/fa"
 import { BooksDispatchContext } from "../../pages/Library/context"
+import { isMobile } from "../../utils/utils"
 import Modal from "../Modal/modal"
 import DeleteConfirmation from "../DeleteConformation/deleteconformation"
 import BookForm from "../BookForm/bookform"
@@ -14,6 +15,8 @@ type BookCardProps = {
 }
 
 export default function BookCard({ book }: BookCardProps) {
+    const mobile = isMobile()
+
     const { createNotification } = useContext(myContext)
     const { libraryDispatch } = useContext(BooksDispatchContext)
 
@@ -38,7 +41,7 @@ export default function BookCard({ book }: BookCardProps) {
         .then((res) => res.json())
         .then((data: ResponseMessage) => {
             if(data.status === "success") {
-                createNotification("Book deleted")
+                createNotification("Book deleted", "success")
                 libraryDispatch({
                     type: "delete",
                     data: book
@@ -46,7 +49,10 @@ export default function BookCard({ book }: BookCardProps) {
                 setDeleteModal(false)
             }
         })
-        .catch((err) => console.error(err))
+        .catch((err) => {
+            createNotification("Failed to delete book", "failure")
+            console.error(err)
+        })
     }
 
     return (
@@ -66,7 +72,7 @@ export default function BookCard({ book }: BookCardProps) {
                         <FaEdit size={18} />
                     </div>
                 </div>
-                <div className={showDelete} onClick={() => setDeleteModal(true)}>
+                <div className={ mobile ? styles.showBookDelete : showDelete} onClick={() => setDeleteModal(true)}>
                     <FaTimes size={24} />
                 </div>
             </div>

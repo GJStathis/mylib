@@ -87,7 +87,7 @@ export default function BookForm({initBook, is_update}: BookFormProps) {
             .then((data: ResponseMessage) => {
                 if(data.status === "success") {
 
-                    createNotification(data.message!)
+                    createNotification(data.message!, "success")
                     
                     if(data.data!.imageURL) {
                         newBook.cover_image_path = data.data!.imageURL
@@ -101,7 +101,7 @@ export default function BookForm({initBook, is_update}: BookFormProps) {
                         data: newBook
                     })
                 } else {
-                    createNotification(`Processes Failed ${data.message}`)
+                    createNotification(`Processes Failed ${data.message}`, "failure")
                 }
             })
             .catch((err) => console.error(err))

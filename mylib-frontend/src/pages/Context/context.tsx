@@ -7,8 +7,8 @@ export default function Context(props: PropsWithChildren<any>) {
     const [user, setUser] = useState<any>()
     const [notifications, setNotifications] = useState<any>([])
 
-    function createNotification(message: string) {
-        setNotifications([...notifications, { message, id: notifications.length }])
+    function createNotification(message: string, type: string) {
+        setNotifications([...notifications, { message: message, type: type, id: notifications.length }])
     }
 
     function deleteNotification(id: number) {
@@ -28,7 +28,6 @@ export default function Context(props: PropsWithChildren<any>) {
             return res.json()
         })
         .then((data) => {
-            console.log(`setting data ${JSON.stringify(data)}`)
             setUser(data)
         })
     }, [])

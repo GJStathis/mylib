@@ -12,7 +12,7 @@ export default function App() {
             <div className={styles.notificationContainer}>
                 {
                 notifications.map((notification, idx) => {
-                    return (<Notification key={idx} notifyObject={notification}/>)
+                    return (<Notification key={idx} notification={notification}/>)
                 })
                 }
             </div>

@@ -10,7 +10,7 @@
 }
 
 .introDivider {
-    width: 10%;
+    width: 100%;
     justify-self: flex-start;
     margin: 0;
     background-color: black;
@@ -18,9 +18,7 @@
 }
 
 .introBlock {
-    display: flex;
-    flex-direction: column;
-    width:auto;
+    display: inline-block;
     padding: 10px;
 }
 

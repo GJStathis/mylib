@@ -1,7 +1,15 @@
 import styles from "./splash.module.css"
-import { NavLink } from "react-router-dom"
+import { Navigate, NavLink } from "react-router-dom"
+import { useContext } from "react"
+import { myContext } from "../Context/context"
 
 export default function Splash() {
+    const ctx = useContext(myContext)
+
+    if(ctx.user && Object.keys(ctx.user).length) {
+        return <Navigate to="/library"/>
+    }
+
     return (
         <div className={styles.splashContainer}>
             <div className={styles.introBlock}>
