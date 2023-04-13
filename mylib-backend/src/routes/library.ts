@@ -32,7 +32,7 @@ router.post("/update/:bookTitle", checkIfAuthenticated, s3_upload, (req, res) =>
     if(req.file) {
         deleteImageInS3(req.params.bookTitle, req.user!.user_id!)
         const s3_file = req.file as any
-        book.cover_image_path = s3_file?.location
+        book.cover_image_path = `${process.env.CLOUD_FRONT_URL}/${s3_file.key}`
     }
 
     console.log("Updating book...")
@@ -52,7 +52,7 @@ router.post("/save", checkIfAuthenticated, s3_upload, (req, res) => {
     
     const book: BookModel = JSON.parse(req.body.data)
     const s3_file = req.file as any
-    book.cover_image_path = s3_file ? s3_file.location : undefined
+    book.cover_image_path = s3_file ? `${process.env.CLOUD_FRONT_URL}/${s3_file.key}` : undefined
 
     saveBook(req.user!.user_id!, book)
     .then((rows: any) => {

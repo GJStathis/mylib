@@ -14,7 +14,6 @@ const image_storage = multer.diskStorage({
 
 const s3_storage = multerS3({
     s3: s3,
-    acl: 'public-read',
     bucket: process.env.S3_BUCKET_NAME!,
     key: function (req, file, cb) {
         cb(null, crypto.randomUUID() + '-' + Date.now() + '-' + file.originalname)
