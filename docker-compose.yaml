@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:15-alpine3.18
+    environment:
+      - POSTGRES_PASSWORD=
+      - POSTGRES_USER=
+      - POSTGRES_DB=
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./mylib-backend/scripts/init:/docker-entrypoint-initdb.d/
+  react-frontend:
+    build:
+      context: ./mylib-frontend
+      dockerfile: Dockerfile
+    image: mylib-react-frontend:latest
+    ports:
+      - 8000:3000
+    env_file:
+      - ./mylib-frontend/.env
+  react-backend:
+    build:
+      context: ./mylib-backend
+      dockerfile: Dockerfile
+    image: mylib-react-backend:latest
+    ports:
+      - 8002:8002
+    env_file:
+      - ./mylib-backend/.env
+    depends_on:
+      - db

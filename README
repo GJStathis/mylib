@@ -1,0 +1,34 @@
+# Requirements
+
+- node 18.x.x or greater
+
+# Structure
+
+The project is split into two directories mylib-backend and mylib-frontned. To run the site locally you will need to cd into the directory that corresponds to the part of the app that you want to launch. Then run **npm i** to install and after **npm run dev** for backend or **npm run start** for the front end. 
+
+
+# Needed env vars
+
+## Back-end
+CLIENT_URL: The URL of the front-end client
+SESSION_SECRET: The secret value for the session secret
+NODE_ENV: The current env you are running in (dev, production)
+APP_PORT: The port you want the backend app to run on
+AWS_ACCESS_KEY: Access key for aws s3 access
+AWS_SECRET_KEY: Secret key for aws s3 access
+AWS_REGION: Region aws should run in
+S3_BUCKET_NAME: Bucket name that files will be uploaded to
+GOOGLE_CLIENT_ID: google api client id
+GOOGLE_CLIENT_SECRET: google api client secret
+APP_HOST: URL back to the backend service for callback
+FACEBOOK_APP_ID: facebook api app id
+FACEBOOK_APP_SECRET: facebook api app secret
+DATABASE_USER: The postgres user to use for the application
+APP_DATABASE: The database in the postgres db
+DATABASE_PASSWORD: pg user password
+DATABSE_PORT: port that the pg db is using
+DATABASE_HOST: uri to the pg db
+CLOUD_FRONT_URL: the url to cloudfront 
+
+## Front-end
+REACT_APP_BACKEND_URL: url to the backend

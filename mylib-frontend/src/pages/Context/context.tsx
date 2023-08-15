@@ -30,6 +30,9 @@ export default function Context(props: PropsWithChildren<any>) {
         .then((data) => {
             setUser(data)
         })
+        .catch((err) => {
+            console.error(err)
+        })
     }, [])
 
     return (
