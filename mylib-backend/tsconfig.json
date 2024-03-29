@@ -19,7 +19,7 @@
     "noImplicitAny": false,                               /* Enable error reporting for expressions and declarations with an implied 'any' type. */
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "typeRoots": [
-      "./src/typings/express",
+      "./src/typings/",
       "./node_modules/@types",
       "./node_modules/@aws-sdk"
     ]

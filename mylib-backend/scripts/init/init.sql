@@ -24,6 +24,40 @@ CREATE TABLE IF NOT EXISTS library (
 
 ALTER TABLE library ADD CONSTRAINT user_book_unique UNIQUE (user_id,book_title);
 
+-- Friends table
+CREATE TABLE IF NOT EXISTS friends (
+  user_id INT NOT NULL REFERENCES users(user_id),
+  friend_id INT NOT NULL REFERENCES users(user_id)
+  UNIQUE (user_id, friend_id)
+);
+
+-- Stored procedure to add a new friend
+CREATE PROCEDURE create_friend_connection(user_id integer, friend_id integer)
+LANGUAGE SQL
+BEGIN ATOMIC
+  insert into friends values (user_id, friend_id);
+  insert into friends values (friend_id , user_id);
+END;
+
+-- Stroed procedure to remove a friend
+CREATE PROCEDURE remove_friend(user_id integer, friend_id integer)
+LANGUAGE SQL
+BEGIN atomic
+  delete from friends where user_id = user_id and friend_id = friend_id;
+  delete from friends where user_id = friend_id and friend_id = user_id;
+END;
+
+-- Friend alerts Table
+CREATE TABLE IF NOT EXISTS friend_alerts (
+  alert_id serial NOT NULL PRIMARY KEY,
+  user_id INT NOT NULL REFERENCES users(user_id),
+  requesting_user_id INT NOT NULL REFERENCES users(user_id),
+  message_str text NOT NULL,
+  read_alert boolean DEFAULT FALSE
+  alert_type text DEFAULT 'friend'
+  UNIQUE (user_id, requesting_user_id)
+);
+
 -- Create session table
 CREATE TABLE "user_sessions" (
   "sid" varchar NOT NULL COLLATE "default",

@@ -8,6 +8,7 @@ import LogoutButton from "../LogoutButton/logoutbutton"
 import styles from "./uibar.module.css"
 import DesktopFilter from "../DesktopFilter/desktopfilter"
 import MobileFilter from "../MobileFilter/mobilefilter"
+import SlideoutMenu from "../SlideoutMenu/slideoutmenu"
 
 type UIBarProps = {
     defaultBooks: BookModel[],
@@ -86,7 +87,7 @@ export default function UIBar({defaultBooks, setBookState}: UIBarProps) {
                 </div>
 
                 <div className={styles.uibarRightDiv}>
-                    <LogoutButton />
+                    <SlideoutMenu />
                 </div>
             </div>
 

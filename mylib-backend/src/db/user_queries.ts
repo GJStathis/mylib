@@ -71,6 +71,16 @@ function getOrCreateUserModel({social_id, social_token, social_media_site, displ
     .catch((err: any) => console.error(err))  
 }
 
+// function getAllUsers(): Promise<Array<UserModel> | void>  {
+//     return connection.query("Select user_id, display_name from users")
+//     .then((res: QueryResult<UserModel>) => {
+//         if(res.rows) {
+//             return res.rows
+//         }
+//     })
+//     .catch((err: any) => console.error(err)) 
+// }
+
 export {
     findUserBySocialmediaID,
     saveUser,

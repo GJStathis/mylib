@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 60px;
+}
+
+.header {
+    justify-self: left;
+}
+
+.linebreak {
+    position: relative;
+    width: 50%;
+}

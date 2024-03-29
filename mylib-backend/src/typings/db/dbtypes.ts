@@ -19,4 +19,25 @@ type BookModel = {
     author: string
 }
 
-export { UserModel, BookModel }
+type FriendSearch = {
+    user_id?: number,
+    display_name?: string,
+    are_friends?: boolean
+}
+
+type Alert = {
+    alert_id?: number,
+    user_id?: number,
+    requesting_user_id?: number,
+    message_str: string,
+    read_alert: boolean
+}
+
+
+
+export { 
+    UserModel, 
+    BookModel,
+    FriendSearch,
+    Alert
+}

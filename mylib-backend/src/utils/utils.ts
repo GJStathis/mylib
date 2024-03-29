@@ -51,10 +51,20 @@ function deleteImageInS3(book_title: string, user_id: number) {
 
 }
 
+const ERROR_CODES = {
+    "DB_UNIQUE_CONSTRAINT_VIOLATION": "23505"
+}
+
+const ALERT_TABLES = {
+    "friend": process.env.FRIEND_ALERT_TABLE
+}
+
 export {
     getPublicImageUrl,
     checkIfAuthenticated,
     generateSuccessResponse,
     generateErrorResponse,
-    deleteImageInS3
+    deleteImageInS3,
+    ERROR_CODES,
+    ALERT_TABLES
 }

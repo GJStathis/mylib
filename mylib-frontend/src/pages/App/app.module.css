@@ -6,7 +6,7 @@
     max-height: 100px;
     min-width: 150px;
     z-index: 11;
-    overflow: scroll;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }

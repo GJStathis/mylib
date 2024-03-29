@@ -1,0 +1,62 @@
+.friendCardContainer {
+    width: 50%;
+    height: 75px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    width: 80px;
+    height: 45px;
+    text-decoration: none;
+    border: 1px solid black;
+    background-color: transparent;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.button:hover {
+    background-color: black;
+    color: white;
+    transition: all .1s ease-in-out;
+}
+
+.removeFriend {
+    width: 80px;
+    height: 45px;
+    text-decoration: none;
+    border: 1px solid #963939;
+    background-color: transparent;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.removeFriend:hover {
+    background-color: #963939;
+    color: white;
+    transition: all .1s ease-in-out;
+}
+
+.friendSection {
+    width: 75%;
+    display: flex;
+    align-self: center;
+    padding-left: 20px;
+}
+
+.buttonSection {
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+    padding-right: 20px;
+    align-self: center;
+}

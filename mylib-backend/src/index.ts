@@ -11,6 +11,8 @@ import pgSessionConnect from "connect-pg-simple"
 import { connection } from "./db/connection.js"
 import { setAuthRoutes } from "./routes/auth.js"
 import libraryRoutes from "./routes/library.js"
+import friendsRoutes from "./routes/friends.js"
+import alertRoutes from "./routes/alerts.js"
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -49,7 +51,9 @@ app.use(passport.session())
 app.use(express.static(path.join(__dirname,'../public')));
 
 app.use("/auth", setAuthRoutes(passport))
+app.use("/alerts", alertRoutes)
 app.use("/library", libraryRoutes)
+app.use("/friends", friendsRoutes)
 
 app.listen(process.env.APP_PORT, () => {
     console.log(`Server started on port ${process.env.APP_PORT}`)

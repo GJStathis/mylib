@@ -44,3 +44,7 @@ export interface NotificationObject {
     type: string,
     id: number,
 }
+
+export interface Friend {
+    friendName: string
+}

@@ -34,8 +34,8 @@ function passportStrategies(passport: passport.PassportStatic) {
         passReqToCallback   : true
       },
       function(req: Request, accessToken: string, refreshToken: string, profile: any, done: GoogleStrategy.VerifyCallback) {
-    
-        // Creater logic here to find a user in db and if not there save them
+        
+        // Create logic here to find a user in db and if not there save them
         const socialMediaSite = "google"
         const user: UserModel = {
             social_id: profile.id,

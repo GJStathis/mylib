@@ -3,11 +3,12 @@ import { FaFilter } from "react-icons/fa"
 import styles from "./dropdowncontainer.module.css"
 
 type DropdownContainerProps = PropsWithChildren & {
-    dropdownStyle: string
-
+    dropdownStyle: string,
+    dropdownContainerStyle?: string
+    buttonIcon?: React.ReactNode
 }
 
-export default function DropdownContainer({children, dropdownStyle}: DropdownContainerProps) {
+export default function DropdownContainer({children, dropdownStyle, buttonIcon = <FaFilter/>, dropdownContainerStyle = styles.filterDropdownContainer}: DropdownContainerProps) {
 
     const dropDownRef = useRef<any>(null)
 
@@ -38,8 +39,8 @@ export default function DropdownContainer({children, dropdownStyle}: DropdownCon
     }
 
     return (
-        <div ref={dropDownRef} className={styles.filterDropdownContainer}>
-            <button onClick={() => openCloseFilterDropdown()} className={styles.filterButton}><FaFilter/></button>
+        <div ref={dropDownRef} className={dropdownContainerStyle}>
+            <button onClick={() => openCloseFilterDropdown()} className={styles.filterButton}>{buttonIcon}</button>
             <div className={showFilterDropdown}>
                 {children}
             </div>
