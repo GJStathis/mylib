@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react"
 import { myContext } from "../../pages/Context/context"
 import { FaTimes } from "react-icons/fa"
 import { NotificationObject } from "../../types/interfaces"
-import styles from "./notification.module.css"
+//import styles from "./notification.module.css"
 
 type NotificationProps = {
     notification: NotificationObject
@@ -29,12 +29,12 @@ export default function Notification({notification}: NotificationProps) {
 
     return (
         <>
-            <div className={styles.notificationContainer} style={notificationColors[notification.type]}>
-                <div className={styles.notificationMesasge}>
+            <div className="max-w-[500px] min-w-[150px] h-[50px] border border-black flex flex-row" style={notificationColors[notification.type]}>
+                <div className="flex items-center justify-center h-full w-[90%] text-white">
                     { notification.message }
                 </div>
-                <div className={styles.notificationOption}>
-                    <div className={styles.notificationOptionClose} onClick={() => deleteNotification(notification.id)}>
+                <div className="flex justify-end w-[10%] h-full">
+                    <div className="hover:cursor-pointer" onClick={() => deleteNotification(notification.id)}>
                         <FaTimes color="white" />
                     </div>
                 </div>

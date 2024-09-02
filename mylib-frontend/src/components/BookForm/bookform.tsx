@@ -4,7 +4,7 @@ import FormInputBlock from "../FormInputBlock/forminputblock"
 import BookNotesList from "../BookNotesList/booknoteslist"
 import { BooksDispatchContext } from "../../pages/Library/context"
 import { getDateString } from "../../utils/utils"
-import styles from "./bookform.module.css"
+// import styles from "./bookform.module.css"
 import { myContext } from "../../pages/Context/context"
 
 type BookFormProps = {
@@ -111,35 +111,35 @@ export default function BookForm({initBook, is_update}: BookFormProps) {
     }
 
     return (
-    <div className={styles.bookForm}>
+    <div className="border-t-2 border-black p-[10px]">
         <form onSubmit={(e) => submitNewBook(e)}>
-            <div className={styles.formContainer}>
+            <div className="flex flex-row">
                 <div>
                     <FormInputBlock>
                         <label htmlFor="bookTitle">Book Title</label>
-                        <input type="text" id="bookTitle" className={styles.formInput} value={bookTitle} onChange={e => setBookTitle(e.target.value)}/>
+                        <input type="text" id="bookTitle" className="border-2 border-black rounded-[10px] h-[20px] p-2" value={bookTitle} onChange={e => setBookTitle(e.target.value)}/>
                     </FormInputBlock>
 
                     <FormInputBlock>
                         <label htmlFor="bookAuthor">Book author</label>
-                        <input type="text" id="bookAuthor" className={styles.formInput} value={bookAuthor} onChange={e => setBookAuthor(e.target.value)}/>
+                        <input type="text" id="bookAuthor" className="border-2 border-black rounded-[10px] h-[20px] p-2" value={bookAuthor} onChange={e => setBookAuthor(e.target.value)}/>
                     </FormInputBlock>
 
                     { readingStatus === "Completed" &&
-                        <div className={styles.completeDateInput}>
+                        <div className="mt-[10px] flex">
                             <FormInputBlock>
                                 <label htmlFor="competedDate">Completed Date</label>
-                                <input className={styles.dateInput} type="date" id="competedDate" value={completedDate} defaultValue={completedDate} onChange={(e) => setCompletedDate(e.target.value)}/>
+                                <input className="border border-black rounded-[10px] h-[20px]" type="date" id="competedDate" value={completedDate} defaultValue={completedDate} onChange={(e) => setCompletedDate(e.target.value)}/>
                             </FormInputBlock>
-                                <button  type="button" className={styles.clearButton} onClick={() => setCompletedDate("")}>clear</button>
+                                <button  type="button" className="h-[25px] ml-[10px] self-end bg-transparent border border-black rounded-[5px] transition-all duration-100 ease-in-out hover:bg-black hover:text-white" onClick={() => setCompletedDate("")}>clear</button>
                         </div>
                     }
 
-                    <div className={styles.radioContainer}>
+                    <div className="mt-[10px]">
                         Reading status
                         <div>
                             <label>
-                                <input className={styles.radioButton} type="radio" name="read_status" checked={readingStatus === "Not Read"} onChange={() => setReadingStatus("Not Read")}/> Not Read
+                                <input className="text-red-500 border border-white" type="radio" name="read_status" checked={readingStatus === "Not Read"} onChange={() => setReadingStatus("Not Read")}/> Not Read
                             </label>
                         </div>
                         <div>
@@ -155,23 +155,23 @@ export default function BookForm({initBook, is_update}: BookFormProps) {
                     </div>
 
                 </div>
-                <div className={styles.imageContainer}>
+                <div className="flex flex-row ml-[10px]">
                     <FormInputBlock>
                         <label htmlFor="bookCover">Upload {is_update ? "a new" : "a" } cover image</label>
                         <input type="file" id="bookCover" onChange={(e) => setCoverFile(e.target!.files![0])}/>
                     </FormInputBlock>
                     { coverFile &&
-                        <img className={styles.imagePreview} src={URL.createObjectURL(coverFile as Blob)} alt="Could not find file"/>
+                        <img className="w-[200px] h-[275px] border border-black" src={URL.createObjectURL(coverFile as Blob)} alt="Could not find file"/>
                     }
                 </div>
             </div>
             
-            <div className={styles.bookNotesList}>
+            <div className="pt-[20px]">
                 Book Notes
                 <BookNotesList notes={notes_array} setNotes={setNotes}  />
             </div>
 
-            <input type="submit" value={`${is_update ? "Update" : "Add"} book`} className={styles.bookFormSubmit}/>
+            <input type="submit" value={`${is_update ? "Update" : "Add"} book`} className="h-[30px] bg-transparent border border-black rounded-[5px] transition-all duration-100 ease-in-out hover:bg-black hover:text-white font-bold p-2 leading-none -my-2.5"/>
         </form>
     </div>
     )

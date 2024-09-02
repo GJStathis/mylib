@@ -1,5 +1,4 @@
 import { PropsWithChildren } from "react"
-import styles from "./filterdropdownitem.module.css"
 
 type FilterDropdownItemProps = PropsWithChildren & {
     filterName: string
@@ -8,9 +7,9 @@ type FilterDropdownItemProps = PropsWithChildren & {
 export default function FilterDropdownItem({children, filterName}: FilterDropdownItemProps) {
 
     return (
-        <div className={styles.dropdownItem}>
-            <button className={styles.dropdownButton}>{filterName}</button>
-            <div className={styles.subFilter}>
+        <div className="dropdownItem group relative">
+            <button className="h-[45px] w-[150px] bg-white border border-black font-typeMachine">{filterName}</button>
+            <div className="subFilter hidden group-hover:inline-block absolute">
                 {children}
             </div>
         </div>

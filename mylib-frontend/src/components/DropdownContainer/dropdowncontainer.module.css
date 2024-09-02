@@ -1,14 +1,14 @@
-.filterDropdownContainer {
+/* .filterDropdownContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.hideFilterDropdown {
+/* .hideFilterDropdown {
     display: none !important
-}
-
+} */
+/* 
 .filterButton {
     height: 45px;
     width: 45px;
@@ -25,4 +25,4 @@
     background-color: black;
     color: white;
     transition: all .1s ease-in-out;
-}
+} */

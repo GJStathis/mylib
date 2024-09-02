@@ -1,4 +1,4 @@
-.uibarcontainer {
+/* .uibarcontainer {
     width: 100%;
     position: fixed;
     display: flex;
@@ -9,8 +9,8 @@
     z-index: 2;
     background-color: #FAF9F6;
     border-bottom: 2px solid black;
-}
-
+} */
+/* 
 .uibarLeftDiv {
     display: flex;
     width: 10%;
@@ -29,9 +29,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.addButton {
+/* .addButton {
     width: 150px;
     height: 45px;
     border-radius: 20px;
@@ -47,9 +47,9 @@
     background-color: #3f5a36;
     color: white;
     transition: all .1s ease-in-out;
-}
+} */
 
-@font-face {
+/* @font-face {
     font-family: 'Type Machine';
     src: local('Type Machine'), url('../../fonts/Type Machine.ttf') format("truetype");
-}
+} */
