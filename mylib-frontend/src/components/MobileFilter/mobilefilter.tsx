@@ -1,7 +1,6 @@
 import DropdownContainer from "../DropdownContainer/dropdowncontainer"
 import FilterDate from "../FilterDate/filterdate"
 import FilterSelect from "../FilterSelect/filterselect"
-// import styles from "./mobilefilter.module.css"
 
 type MobileFilterProps = {
     readStatusFilter: string,

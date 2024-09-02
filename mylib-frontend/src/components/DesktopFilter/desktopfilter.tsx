@@ -2,7 +2,6 @@ import FilterSelect from "../FilterSelect/filterselect"
 import FilterDate from "../FilterDate/filterdate"
 import FilterDropdownItem from "../FilterDropdownItem/filterdropdownitem"
 import DropdownContainer from "../DropdownContainer/dropdowncontainer"
-// import styles from "./desktopfilter.module.css"
 
 type DesktopFilterProps = {
     readStatusFilter: string,

@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Friend } from "../../types/interfaces"
 import FriendCard from "../../components/FriendCard/friendcard"
-//import styles from './friendlist.module.css'
 
 export default function FriendList() {
     const [friends, setFriends] = useState([

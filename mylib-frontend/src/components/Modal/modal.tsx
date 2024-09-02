@@ -1,5 +1,4 @@
 import React, { PropsWithChildren, useRef, useEffect } from "react";
-//import styles from "./modal.module.css"
 
 type ModalProps = PropsWithChildren & {
     title: string,

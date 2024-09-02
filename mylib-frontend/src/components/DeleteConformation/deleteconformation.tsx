@@ -1,5 +1,3 @@
-// import styles from "./deleteconformation.module.css"
-
 type DeleteConfirmationProps = {
     closeFn: any,
     deleteFn: any

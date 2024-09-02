@@ -2,7 +2,6 @@ import { useContext, useState } from "react"
 import { Navigate } from "react-router-dom"
 import { ResponseMessage } from "../../types/interfaces"
 import { myContext } from "../../pages/Context/context"
-// import styles from "./logoutbutton.module.css"
 
 export default function LogoutButton() {
     const { setUser } = useContext(myContext)

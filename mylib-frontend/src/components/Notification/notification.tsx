@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react"
 import { myContext } from "../../pages/Context/context"
 import { FaTimes } from "react-icons/fa"
 import { NotificationObject } from "../../types/interfaces"
-//import styles from "./notification.module.css"
 
 type NotificationProps = {
     notification: NotificationObject

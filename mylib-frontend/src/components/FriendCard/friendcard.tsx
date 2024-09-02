@@ -1,4 +1,3 @@
-//import styles from "./friendcard.module.css"
 import { Friend } from "../../types/interfaces"
 
 type FriendCardProps = {

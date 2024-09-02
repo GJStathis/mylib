@@ -1,5 +1,3 @@
-// import styles from "./booknoteslist.module.css"
-
 type BookNotesListProps = {
     notes: string[],
     setNotes: React.Dispatch<any>

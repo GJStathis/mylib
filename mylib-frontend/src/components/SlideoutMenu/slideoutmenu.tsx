@@ -1,6 +1,5 @@
 import DropdownContainer from "../DropdownContainer/dropdowncontainer"
 import { FaGear } from "react-icons/fa6"
-//import styles from "./slideoutmenu.module.css"
 
 export default function SlideoutMenu() {
 
