@@ -1,17 +1,16 @@
 import { useState } from "react"
 import { Friend } from "../../types/interfaces"
 import FriendCard from "../../components/FriendCard/friendcard"
-import styles from './friendlist.module.css'
 
 export default function FriendList() {
     const [friends, setFriends] = useState([
     ])
 
     return(
-        <div className={styles.container}>
-            <h1 className={styles.header}>Friends list</h1>
+        <div className="flex justify-center items-center flex-col mt-[60px]">
+            <h1 className="justify-self-start">Friends list</h1>
 
-            <hr className={styles.linebreak}/>
+            <hr className="relative w-[50%]"/>
 
             { friends.length > 0 ?
                 friends.map((friend: Friend, idx: number) => {

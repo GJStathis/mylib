@@ -4,7 +4,6 @@ import { bookReducer } from "../../utils/reducers"
 import { BooksDispatchContext } from "./context"
 import BookCard from "../../components/BookCard/bookcard"
 import UIBar from "../../components/UIBar/uibar"
-import styles from "./library.module.css"
 
 export default function Library() {
 
@@ -32,8 +31,8 @@ export default function Library() {
     return (
         <BooksDispatchContext.Provider value={{libraryDispatch: dispatch}} >
             <UIBar defaultBooks={books} setBookState={setDisplayBooks} />
-            <div className={styles.libraryContainer}>
-                <div className={styles.booksContainer}>
+            <div className="flex flex-col mt-14">
+                <div className="flex flex-wrap custom-sm:justify-center">
                     {
                         displayBooks.map((val: BookModel, idx: number) => {
                             return <BookCard key={idx} book={val}/>

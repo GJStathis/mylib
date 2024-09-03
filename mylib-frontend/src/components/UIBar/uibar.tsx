@@ -4,8 +4,6 @@ import { BookModel } from "../../types/interfaces"
 import { isMobile } from "../../utils/utils"
 import BookForm from "../../components/BookForm/bookform"
 import Modal from "../../components/Modal/modal"
-import LogoutButton from "../LogoutButton/logoutbutton"
-import styles from "./uibar.module.css"
 import DesktopFilter from "../DesktopFilter/desktopfilter"
 import MobileFilter from "../MobileFilter/mobilefilter"
 import SlideoutMenu from "../SlideoutMenu/slideoutmenu"
@@ -54,16 +52,16 @@ export default function UIBar({defaultBooks, setBookState}: UIBarProps) {
 
     return (
         <>
-            <div className={styles.uibarcontainer}>
-                <div className={styles.uibarLeftDiv}>
-                    <button type="button" onClick={() => setAddNewBook(true)} className={styles.addButton}>
+            <div className="w-full fixed flex h-16 items-center justify-between top-0 z-20 bg-[#FAF9F6] border-b-2 border-black">
+                <div className="flex w-1/10 p-2.5">
+                    <button type="button" onClick={() => setAddNewBook(true)} className="w-36 h-11 rounded-3xl bg-transparent border border-[#3f5a36] text-black font-bold cursor-pointer transition-all duration-100 ease-in-out hover:bg-[#3f5a36] hover:text-white">
                         {
                             mobile ? "+" : "Add a new book"
                         }
                     </button>
                 </div>
 
-                <div className={styles.uibarCenterDiv}>
+                <div className="flex w-9/10 justify-center items-center">
                     { mobile
                         ? <MobileFilter
                             readStatusFilter={readStatusFilter}
@@ -86,7 +84,7 @@ export default function UIBar({defaultBooks, setBookState}: UIBarProps) {
                     }
                 </div>
 
-                <div className={styles.uibarRightDiv}>
+                <div className="flex w-1/10 p-2.5 justify-end">
                     <SlideoutMenu />
                 </div>
             </div>

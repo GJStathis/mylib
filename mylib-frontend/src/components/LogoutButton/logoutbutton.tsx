@@ -2,7 +2,6 @@ import { useContext, useState } from "react"
 import { Navigate } from "react-router-dom"
 import { ResponseMessage } from "../../types/interfaces"
 import { myContext } from "../../pages/Context/context"
-import styles from "./logoutbutton.module.css"
 
 export default function LogoutButton() {
     const { setUser } = useContext(myContext)
@@ -25,7 +24,7 @@ export default function LogoutButton() {
 
     return (
         <>
-            <button onClick={() => logoutUser()} className={styles.logoutbutton}>Logout</button>
+            <button onClick={() => logoutUser()} className="w-[80px] h-[45px] no-underline border border-[#963939] bg-transparent rounded-[10px] text-black font-bold cursor-pointer transition-all duration-100 ease-in-out hover:bg-[#963939] hover:text-white">Logout</button>
 
             { returnToSpalsh &&
                 <Navigate to="/" />

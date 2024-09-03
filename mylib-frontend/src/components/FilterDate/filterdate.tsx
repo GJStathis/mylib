@@ -15,7 +15,9 @@ export default function FilterDate({selectedVal, setSelectValue}: FilterDateProp
             <DatePicker 
                 selected={selectedVal}
                 onChange={(date: Date) => setSelectValue(date)}
+                className='border border-black rounded'
                 dateFormat="MM/yyyy"
+                placeholderText="Select a date" 
                 showMonthYearPicker
                 showFullMonthYearPicker
                 showFourColumnMonthYearPicker

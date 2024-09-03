@@ -1,5 +1,4 @@
 import { GoogleLoginButton, FacebookLoginButton } from "react-social-login-buttons"
-import styles from "./login.module.css"
 
 export default function Login(){
 
@@ -8,10 +7,10 @@ export default function Login(){
     }
 
     return (
-        <div className={styles.centerDiv}>
-            <div className={styles.loginDiv}>
-                <h3 className={styles.loginText}>Login</h3>
-                <hr className={styles.loginDivider} />
+        <div className="h-screen w-screen flex items-center justify-center">
+            <div className="h-[200px] p-[10px] border-2 border-black rounded-[10px] drop-shadow-[5px_5px_5px_black] bg-[#FAF9F6] flex items-center justify-center flex-col">
+                <h3 className="m-0 text-2xl font-typeMachine">Login</h3>
+                <hr className="m-0 w-1/2 mb-5" />
                 <GoogleLoginButton onClick={() => signIn("google")} />
                 <FacebookLoginButton onClick={() => signIn("facebook")} />
             </div>
