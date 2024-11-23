@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frontend-ip
+  name: frontend-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: mylib-frontend
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frontend-port
+  name: frontend-service-port
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      nodePort: 30007
+  selector:
+    app: mylib-frontend

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mylib-frontend-deployment
+  labels:
+    app: mylib-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mylib-frontend
+  template:
+    metadata:
+      labels:
+        app: mylib-frontend
+    spec:
+      containers:
+      - name: mylib-frontend
+        image: {image name}
+        ports:
+        - containerPort: 3000
+        envFrom:
+          - configMapRef:
+              name: mylib-frontend-configmap

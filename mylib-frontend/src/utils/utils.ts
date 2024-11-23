@@ -49,10 +49,32 @@ function isMobile(): boolean {
      }
 }
 
+function convertToTitleCase(str: string | undefined): string {
+    if(!str) {
+        return ""
+    }
+
+    return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
+async function hashStringArray(strings: string[]): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = strings.join(''); 
+    const encodedData = encoder.encode(data);
+
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encodedData);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashValue =  hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+
+    return hashValue
+} 
+
 export {
     generateBlankBook,
     getDateString,
     inGivenMonth,
     compareStringsInCharOrder,
-    isMobile
+    isMobile,
+    convertToTitleCase,
+    hashStringArray
 }

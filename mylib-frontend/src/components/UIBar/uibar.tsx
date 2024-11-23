@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { compareStringsInCharOrder, generateBlankBook, inGivenMonth } from "../../utils/utils"
 import { BookModel } from "../../types/interfaces"
 import { isMobile } from "../../utils/utils"
@@ -7,6 +7,7 @@ import Modal from "../../components/Modal/modal"
 import DesktopFilter from "../DesktopFilter/desktopfilter"
 import MobileFilter from "../MobileFilter/mobilefilter"
 import SlideoutMenu from "../SlideoutMenu/slideoutmenu"
+import { myContext } from "../../app/pages/Context/context"
 
 type UIBarProps = {
     defaultBooks: BookModel[],
@@ -15,6 +16,7 @@ type UIBarProps = {
 
 export default function UIBar({defaultBooks, setBookState}: UIBarProps) {
 
+    const { user } = useContext(myContext)
     const [mobile] = useState(isMobile())
     const [addNewBook, setAddNewBook] = useState<boolean>(false)
     const [searchQuery, setSearchQuery] = useState("")
@@ -85,7 +87,7 @@ export default function UIBar({defaultBooks, setBookState}: UIBarProps) {
                 </div>
 
                 <div className="flex w-1/10 p-2.5 justify-end">
-                    <SlideoutMenu />
+                    <SlideoutMenu user={user} />
                 </div>
             </div>
 
@@ -94,6 +96,7 @@ export default function UIBar({defaultBooks, setBookState}: UIBarProps) {
                 <BookForm 
                     initBook={generateBlankBook()}
                     is_update={false}
+                    closeModal={() => setAddNewBook(false)}
                 />
             </Modal>
         </>

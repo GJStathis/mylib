@@ -1,12 +1,13 @@
 import React from "react"
 
-type UserModel = {
+export type UserModel = {
     user_id?: number
-    social_media_site: string,
-    social_id: string
-    social_token: string
+    auth_origin: string,
+    auth_id?: string
+    oauth_token?: string
     display_name?: string
     email?: string
+    password?: string
 }
 
 export interface BookModel {
@@ -34,7 +35,7 @@ export interface LibraryDispatchContext {
 }
 
 export interface ResponseMessage {
-    status: string,
+    status?: string,
     data?: Record<string, any>
     message?: string
 }

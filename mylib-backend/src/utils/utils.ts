@@ -1,9 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import { ResponseMessage } from "../typings/general/types.js";
-import { getUserBookImageURL } from "../db/library_queries.js"
-import { BookModel } from "../typings/db/dbtypes.js";
+import { ResponseMessage } from "../typings/general/index.js";
+import { getUserBookImageURL } from "../controllers/db/library_queries.js"
+import { BookModel } from "../typings/db/index.js";
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
-import { s3 } from "../config/aws.js"
+import { s3 } from "../libs/aws.js"
+import { json } from "stream/consumers";
 
 
 function getPublicImageUrl(image_file_path: string) {
@@ -51,6 +52,17 @@ function deleteImageInS3(book_title: string, user_id: number) {
 
 }
 
+function isValidJson(jsonString: string): boolean {
+    try {
+        JSON.parse(jsonString)
+        return true
+    } catch {
+        return false
+    }
+}
+
+
+//@TODO: Turn the below into enums
 const ERROR_CODES = {
     "DB_UNIQUE_CONSTRAINT_VIOLATION": "23505"
 }
@@ -65,6 +77,7 @@ export {
     generateSuccessResponse,
     generateErrorResponse,
     deleteImageInS3,
+    isValidJson,
     ERROR_CODES,
     ALERT_TABLES
 }
