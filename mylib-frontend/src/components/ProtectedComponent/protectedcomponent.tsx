@@ -1,6 +1,6 @@
 import { PropsWithChildren, useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { myContext } from "../../pages/Context/context";
+import { myContext } from "../../app/pages/Context/context";
 import Loading from "../Loading/loading";
 
 export default function ProtectedComponent({children}: PropsWithChildren) {

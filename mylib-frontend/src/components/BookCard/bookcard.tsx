@@ -1,13 +1,13 @@
 import { useContext, useState } from "react"
 import { BookModel, ResponseMessage } from "../../types/interfaces"
 import { FaEdit, FaTimes } from "react-icons/fa"
-import { BooksDispatchContext } from "../../pages/Library/context"
+import { BooksDispatchContext } from "../../app/pages/Library/context"
 import { isMobile } from "../../utils/utils"
 import Modal from "../Modal/modal"
 import DeleteConfirmation from "../DeleteConformation/deleteconformation"
 import BookForm from "../BookForm/bookform"
 import BookInfo from "../BookInfo/bookinfo"
-import { myContext } from "../../pages/Context/context"
+import { myContext } from "../../app/pages/Context/context"
 
 
 type BookCardProps = {
@@ -36,7 +36,7 @@ export default function BookCard({ book }: BookCardProps) {
     }
 
     function deleteBook() {
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/library/delete/${book.book_title}`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/library/${book.book_title}`, {
             method: "DELETE",
             credentials: "include"
         })
@@ -92,6 +92,7 @@ export default function BookCard({ book }: BookCardProps) {
                 <BookForm 
                     initBook={book}
                     is_update={true}
+                    closeModal={() => setUpdateModal(false)}
                 />
             </Modal>
         </>

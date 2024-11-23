@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react"
-import { myContext } from "../../pages/Context/context"
+import { myContext } from "../../app/pages/Context/context"
 import { FaTimes } from "react-icons/fa"
 import { NotificationObject } from "../../types/interfaces"
 

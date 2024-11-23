@@ -6,7 +6,8 @@ COPY public/ /react-app/public
 COPY src/ /react-app/src
 COPY package.json /react-app/
 COPY tsconfig.json /react-app/
+COPY tailwind.config.js /react-app/
 
 RUN npm install
 
-cmd ["npm", "start"]
+CMD ["npm", "start"]

@@ -5,3 +5,4 @@ mylib-frontend/build
 mylib-backend/build
 .DS_Store
 test_data
+manifests/*_configmap.yaml

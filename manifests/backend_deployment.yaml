@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mylib-backend-deployment
+  labels:
+    app: mylib-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mylib-backend
+  template:
+    metadata:
+      labels:
+        app: mylib-backend
+    spec:
+      containers:
+      - name: mylib-backend
+        image: {image name}
+        ports:
+        - containerPort: 8002
+        envFrom:
+          - configMapRef:
+              name: mylib-backend-config
+      imagePullSecrets:
+      - name: regcred

@@ -1,3 +1,5 @@
+import { GoPlus } from "react-icons/go";
+
 type BookNotesListProps = {
     notes: string[],
     setNotes: React.Dispatch<any>
@@ -30,7 +32,14 @@ export default function BookNotesList({notes, setNotes}: BookNotesListProps) {
 
     return (
         <div className="flex flex-col p-[10px]">
-        
+            <div className="flex flex-row gap-5 mb-2">
+                <div>Book Notes</div>
+                <button type="button" className="w-[30px] h-[30px] rounded-full border border-[#5b824e] bg-[#5b824e] hover:bg-[#4e7043] flex items-center justify-center" onClick={() => addNote()}>
+                    <GoPlus/>
+                </button>
+            </div>
+
+            <div className="max-h-52 overflow-y-scroll">
             {
                 notes.map((val, idx) => {
                     return (
@@ -41,8 +50,8 @@ export default function BookNotesList({notes, setNotes}: BookNotesListProps) {
                     )
                 })
             }
+            </div>
 
-            <button type="button" className="w-[30px] h-[30px] rounded-full border border-[#5b824e] bg-[#5b824e] hover:bg-[#4e7043]" onClick={() => addNote()}>+</button>
         </div>
     )
 }

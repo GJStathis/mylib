@@ -10,7 +10,14 @@
 
 }
 
+@layer utils {
+  .slideout-item {
+    @apply cursor-pointer transition-all duration-100 ease-in-out hover:text-[#00008B] w-fit
+  }
+
+}
+
 @font-face {
   font-family: 'Type Machine';
-  src: local('Type Machine'), url('./fonts/Type Machine.ttf') format("truetype");
+  src: local('Type Machine'), url('./assets/Type Machine.ttf') format("truetype");
 }
